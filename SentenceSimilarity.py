@@ -7,6 +7,7 @@ Created on Fri Apr 12 15:10:40 2019
 import nltk
 from pywsd.lesk import simple_lesk
 import numpy as np
+from nltk.corpus import wordnet as wn
 
 class SentenceSimilarity:
     
@@ -36,7 +37,7 @@ class SentenceSimilarity:
         for i,a1 in enumerate(arr1):
             all_similarityIndex=[]
             for a2 in arr2:
-                similarity = a1.wup_similarity(a2)
+                similarity = wn.synset(a1.name()).wup_similarity(wn.synset(a2.name()))
                 if similarity != None:
                     all_similarityIndex.append(similarity)
                 else:
